@@ -1,10 +1,6 @@
-% Last updated: 6-5-2023, By LuKeZ 
+% Last updated: 6-15-2023, By LuKeZ 
 
 % This code loads the tif images and use a customize threshold function to analyze the image
-
-% This code first apply a background subtraction on the tif images, the
-% background value is defined as the median pixel value of an empty space
-% cropped out of the full image. 
 
 % We segment out individual cells from the background subtracted full image
 % and analyze them using a custom threshold function. Any pixels less than
@@ -12,10 +8,12 @@
 % threshold remains unchanged. 
 
 % Path to image file: 
+% CCCP: 
 % data_path = 'C:\Users\LuKeZ\Desktop\FtsZ quantification\FtsZ tiffs\CCCP\SingleCells\';
 % cell_name = {'2A','2B','2C','2D','2E','2F','2G','2H','2I','6A','6B','6C',...
 %     '7A','7B','7C','7D','7E','7F','7G','8A','8B','8C','8D','8E'};
 
+% DMSO: 
 data_path = 'C:\Users\LuKeZ\Desktop\FtsZ quantification\FtsZ tiffs\DMSO\SingleCells\';
 cell_name = {'2A','2B','2C','2D','2E','2F','2G','3A','3B','3C','3D','3A','3E',...
     '4A','4B','4C','4D','4E','4F','6A','6B','6C','6D','6E','6F','6G','8A','8B','8C','8D','8E','8F','8G'};
@@ -64,35 +62,35 @@ for cell_idx = 1:numel(cell_name)
     
     subplot(1,5,1);
     imagesc(raw_img); 
-    clim([0, 500]);
+    clim([0, pix_thres_table(1,5)]);
 %     colormap gray;
     title(pix_thres_table(1,1));
     axis off;
 
     subplot(1,5,2);
     imagesc(img_2); 
-    clim([0, 500]);
+    clim([0, pix_thres_table(1,5)]);
 %     colormap gray;
     title(pix_thres_table(1,2));
     axis off;
 
     subplot(1,5,3);
     imagesc(img_3); 
-    clim([0, 500]);
+    clim([0, pix_thres_table(1,5)]);
 %     colormap gray;
     title(pix_thres_table(1,3));
     axis off;
 
     subplot(1,5,4);
     imagesc(img_4); 
-    clim([0, 500]);
+    clim([0, pix_thres_table(1,5)]);
 %     colormap gray;
     title(pix_thres_table(1,4));
     axis off;
 
     subplot(1,5,5);
     imagesc(img_5);
-    clim([0, 500]);
+    clim([0, pix_thres_table(1,5)]);
 %     colormap gray; 
     cb=colorbar;
     cb.Position = cb.Position + [0.07, 0.0, 0.01, 0.0];
@@ -113,6 +111,7 @@ for cell_idx = 1:numel(cell_name)
 end
 
 save('pix_thres_table_DMSO_1-500.mat','pix_thres_table');
+
 
 
 
